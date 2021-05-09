@@ -29,7 +29,7 @@ class KDRAW {
 
     draw() {
 
-      
+
         frameCount++
 
         if(typeof draw === "function") {
@@ -228,7 +228,7 @@ function fill(r,g,b,a) {
         kdraw.ctx.fillStyle = `rgba(${r.red},${r.green},${r.blue},${r.alpha/255})`
     } else {
         if(kdraw.defined(a)) {
-            console.log(a)
+            // console.log(a)
             kdraw.ctx.fillStyle = `rgba(${r},${g},${b},${a/255})`
         } else if(kdraw.defined(b)) {
             kdraw.ctx.fillStyle = `rgb(${r},${g},${b})`

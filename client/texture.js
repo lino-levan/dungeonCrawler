@@ -21,6 +21,9 @@ register_texture('/assets/textures/tiles/torch_4.png','torch_4')
 register_texture('/assets/textures/entities/player/walking_1.png','player_walking_1')
 register_texture('/assets/textures/entities/player/walking_2.png','player_walking_2')
 
+register_texture('/assets/textures/entities/skeleton/walking_1.png','skeleton_walking_1')
+register_texture('/assets/textures/entities/skeleton/walking_2.png','skeleton_walking_2')
+
 register_texture('/assets/textures/entities/slime/bounce_1.png','slime_bounce_1')
 register_texture('/assets/textures/entities/slime/bounce_2.png','slime_bounce_2')
 

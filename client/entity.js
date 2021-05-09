@@ -41,6 +41,28 @@ class entity {
                 draw_image('mage_idle', this.x, this.y, 64, 64)
             }
 
+        } else if(this.type === 'skeleton') {
+            pushMatrix()
+
+            translate(this.x + (this.metadata.facing===-1?64:0), this.y)
+
+            scale(this.metadata.facing, 1)
+
+            draw_image("skeleton_walking_1", 0, 0, 64, 64)
+
+            popMatrix()
+
+            pushMatrix()
+
+            translate(this.x+32 + (this.metadata.facing===-1?-16:16), this.y+48)
+
+            scale(this.metadata.facing, 1)
+
+            rotate(sin(frameCount*10)*5)
+
+            draw_image("bow", 0, -64, 64, 64)
+
+            popMatrix()
         }  else if(this.type === 'bomb') {
             draw_image('bomb_'+Math.ceil(this.metadata.timer/10), this.x, this.y, 64, 64)
         }  else {

@@ -14,7 +14,7 @@ const items = {
     bomb: {
         cooldown: 5,
         on_use: ()=>{
-            _world.spawn({type:'bomb', metadata:{velocity:{y:0}, shot_from: socket.id}, x:_world.me.x, y:_world.me.y})
+            _world.spawn({type:'bomb', metadata:{velocity:{y:0}, shot_from: socket.id}, x:_world.me.x, y:_world.me.y-5})
             _world.me.inventory.shift()
         }
     }

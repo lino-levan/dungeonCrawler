@@ -36,9 +36,9 @@ module.exports = (players, entities, io) => {
                 } else if(entity.type === 'tracker') {
                     io.to(id).emit('die')
                     update = true
-                } 
+                }
             }
-        }) 
+        })
     }
 
     entities.forEach((entity1, i) => {
@@ -114,6 +114,14 @@ module.exports = (players, entities, io) => {
                         }
                     }
 
+                    if(entity1.type === 'skeleton') {
+                        if(entity2.type === 'slash') {
+                            entities[i].metadata.health--
+                            entities.splice(j, 1)
+                            update = true
+                        }
+                    }
+
                     if(entity1.type === 'tracker') {
                         if(entity2.type === 'arrow') {
                             entities.splice(i, 1)
@@ -129,14 +137,14 @@ module.exports = (players, entities, io) => {
                     }
 
                     if(entity1.type === 'explosion') {
-                        if(['arrow', 'slash', 'slime', 'tracker', 'mage'].includes(entity2.type)) {
+                        if(['arrow', 'slash', 'slime', 'tracker', 'mage', 'skeleton'].includes(entity2.type)) {
                             entities.splice(j, 1)
                             update = true
                         }
                     }
                }
-            }    
-        }) 
+            }
+        })
     })
 
     if(update) {

@@ -5,6 +5,8 @@ ctx.imageSmoothingEnabled = false;
 
 var _world = new world()
 
+var _gui = new gui()
+
 var socket = io();
 
 socket.on('players', (players)=>{
@@ -53,6 +55,9 @@ keyReleased = function(){keys[keyCode] = false;};
 function draw() {
 
     _world.draw()
+
+    _gui.setInventory(_world.me.inventory)
+    _gui.draw()
 
     let me = _world.me
 

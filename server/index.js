@@ -3,6 +3,7 @@ var express = require('express')
 var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
+const port = 8080;
 
 var handle_entities = require('./handle_entities')
 var handle_collisions = require('./handle_collisions')
@@ -50,9 +51,11 @@ io.on('connection', (socket) => {
     })
 });
 
-http.listen(3000, () => {
-  console.log('listening on *:3000');
+http.listen(port, () => {
+  console.log('listening on *:'+port);
 });
+
+console.log((tiles.length/line_length))
 
 function loop() {
     let update = handle_entities(entities, colliders, players)
@@ -60,17 +63,20 @@ function loop() {
     if(Math.random()<0.01) {
         let items = ['bow', 'normal_sword', 'bomb']
 
-        entities.push({type:'item',metadata:{name:items[Math.floor(Math.random()*items.length)]},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*38)+1)})
+        entities.push({type:'item',metadata:{name:items[Math.floor(Math.random()*items.length)]},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*(tiles.length/line_length))+1)})
         update = true
     }
 
     if(Math.random()<0.01) {
-        if(Math.random()<0.125) {
-            entities.push({type:'mage',metadata:{velocity:{y:0},timer:0, facing:-1, health: 5},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*38)+1)})
-        } else {
-            entities.push({type:'slime',metadata:{velocity:{x:0, y:0},timer:0, facing:-1},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*38)+1)})
-        }
-        update = true
+      let mob = Math.random()
+      if(mob < 0.125) {
+          entities.push({type:'mage',metadata:{velocity:{y:0},timer:0, facing:-1, health: 5},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*(tiles.length/line_length))+1)})
+      } else if(mob < 0.5){
+          entities.push({type:'skeleton',metadata:{velocity:{y:0},timer:0, facing:-1, health: 2},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*(tiles.length/line_length))+1)})
+      } else {
+          entities.push({type:'slime',metadata:{velocity:{x:0, y:0},timer:0, facing:-1},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*(tiles.length/line_length))+1)})
+      }
+      update = true
     }
 
     if(update) {

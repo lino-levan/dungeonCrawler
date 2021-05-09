@@ -17,7 +17,7 @@ class player {
         this.facing = 1
         this.past = {x:x, y:y}
     }
-    
+
     set_animation_state(state) {
         this.animation_state = state
     }
@@ -117,7 +117,7 @@ class player {
         }
 
     }
-    
+
     check_collision(x2,y2,w2,h2) {
         if (this.x < x2 + w2 &&
             this.x + 64 > x2 &&
@@ -125,7 +125,7 @@ class player {
             this.y + 64 > y2) {
             return true
         }
-    
+
         return false
     }
 
