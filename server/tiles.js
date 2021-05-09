@@ -1,0 +1,1 @@
+module.exports = {'#':'background','-':'wooden_bridge','0':'wall','|':'torch_1'}
