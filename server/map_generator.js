@@ -2,7 +2,7 @@ var SimplexNoise = require('simplex-noise'),
     simplex = new SimplexNoise(Math.random);
 var fs = require('fs')
 
-const map_size = 20
+const map_size = 100
 
 var tile_list = require('./tiles')
 
@@ -12,7 +12,7 @@ function generate_map() {
     for(let y = 0;y<map.length;y++) {
         let map_row = map[y]
         for(let x = 0;x<map_row.length;x++) {
-            map[y][x] = simplex.noise2D(x/10,y/10) > 1 ? "0" : "#"
+            map[y][x] = simplex.noise2D(x/10,y/10) > 0.2 ? "0" : "#"
         }
     }
 
