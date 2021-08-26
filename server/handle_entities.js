@@ -219,8 +219,14 @@ module.exports = (entities, colliders, players)=>{
             let player = closest_player(entity.x, entity.y, Object.values(players))
 
             if(player) {
-                entity.x += (entity.x-player.x)!==0?((entity.x-player.x)>0?-6:6):0
-                entity.y += (entity.y-player.y)!==0?((entity.y-player.y)>0?-6:6):0
+                let magnitude = Math.sqrt(Math.pow(entity.x-player.x,2) + Math.pow(entity.y-player.y,2))
+                let speed = -10
+                
+                if (magnitude === 0)
+                    magnitude = 0.01
+                
+                entity.x += ((entity.x-player.x) / magnitude) * speed
+                entity.y += ((entity.y-player.y) / magnitude) * speed
             }
 
             if(entity.metadata.timer === 60) {

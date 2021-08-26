@@ -67,7 +67,7 @@ function loop() {
         update = true
     }
 
-    if(Math.random()<0.01) {
+    if(Math.random()<0.1) {
       let mob = Math.random()
       if(mob < 0.125) {
           entities.push({type:'mage',metadata:{velocity:{y:0},timer:0, facing:-1, health: 5},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*(tiles.length/line_length))+1)})
