@@ -60,23 +60,25 @@ console.log((tiles.length/line_length))
 function loop() {
     let update = handle_entities(entities, colliders, players)
 
-    if(Math.random()<0.01) {
-        let items = ['bow', 'normal_sword', 'bomb']
-
-        entities.push({type:'item',metadata:{name:items[Math.floor(Math.random()*items.length)]},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*(tiles.length/line_length))+1)})
-        update = true
-    }
-
-    if(Math.random()<0.1) {
-      let mob = Math.random()
-      if(mob < 0.125) {
-          entities.push({type:'mage',metadata:{velocity:{y:0},timer:0, facing:-1, health: 5},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*(tiles.length/line_length))+1)})
-      } else if(mob < 0.5){
-          entities.push({type:'skeleton',metadata:{velocity:{y:0},timer:0, facing:-1, health: 2},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*(tiles.length/line_length))+1)})
-      } else {
-          entities.push({type:'slime',metadata:{velocity:{x:0, y:0},timer:0, facing:-1},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*(tiles.length/line_length))+1)})
-      }
-      update = true
+    if(Object.keys(players).length > 0 && entities.length < 150) {
+        if(Math.random()<0.02) {
+            let items = ['bow', 'normal_sword', 'bomb']
+    
+            entities.push({type:'item',metadata:{name:items[Math.floor(Math.random()*items.length)]},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*(tiles.length/line_length))+1)})
+            update = true
+        }
+    
+        if(Math.random()<0.05) {
+          let mob = Math.random()
+          if(mob < 0.125) {
+              entities.push({type:'mage',metadata:{velocity:{y:0},timer:0, facing:-1, health: 5},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*(tiles.length/line_length))+1)})
+          } else if(mob < 0.5){
+              entities.push({type:'skeleton',metadata:{velocity:{y:0},timer:0, facing:-1, health: 2},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*(tiles.length/line_length))+1)})
+          } else {
+              entities.push({type:'slime',metadata:{velocity:{x:0, y:0},timer:0, facing:-1},x:64*(Math.floor(Math.random()*(line_length-2))+1), y:64*(Math.floor(Math.random()*(tiles.length/line_length))+1)})
+          }
+          update = true
+        }
     }
 
     if(update) {
